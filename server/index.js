@@ -5,7 +5,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: '*', // Update to your frontend URL after deployment
+    origin: 'https://webrtc-video-chat-frontend.onrender.com', // Update to your frontend URL after deployment
     methods: ['GET', 'POST']
   }
 });
