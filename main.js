@@ -119,11 +119,17 @@ socket.on('user-disconnected', () => {
   }
 });
 
-if (roomId) {
-  await startVideo();
-  if (localStream) {
-    socket.emit('join-room', roomId);
-  } else {
-    console.error('Failed to get local stream, cannot join room');
+// Wrap the top-level await in an async function
+async function initializeRoom() {
+  if (roomId) {
+    await startVideo();
+    if (localStream) {
+      socket.emit('join-room', roomId);
+    } else {
+      console.error('Failed to get local stream, cannot join room');
+    }
   }
 }
+
+// Call the async function immediately
+initializeRoom();
